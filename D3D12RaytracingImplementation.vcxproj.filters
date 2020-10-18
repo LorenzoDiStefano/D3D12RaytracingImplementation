@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\Win32Application.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RaytracingSample.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdafx.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dx12\dxr\nv_helpers_dx12\ShaderBindingTableGenerator.cpp">
+      <Filter>Source\dx12\dxr\nvidia_helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dx12\dxr\nv_helpers_dx12\RaytracingPipelineGenerator.cpp">
+      <Filter>Source\dx12\dxr\nvidia_helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dx12\dxr\nv_helpers_dx12\BottomLevelASGenerator.cpp">
+      <Filter>Source\dx12\dxr\nvidia_helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dx12\dxr\nv_helpers_dx12\TopLevelASGenerator.cpp">
+      <Filter>Source\dx12\dxr\nvidia_helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dx12\dxr\nv_helpers_dx12\RootSignatureGenerator.cpp">
+      <Filter>Source\dx12\dxr\nvidia_helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dx12\Dx12Api.cpp">
+      <Filter>Source\dx12</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Win32Application.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\vertex.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RaytracingSample.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IApplication.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\AccelerationStructureBuffers.h">
+      <Filter>Headers\dx12\dxr\nvidia_helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\dxr\nv_helpers_dx12\BottomLevelASGenerator.h">
+      <Filter>Headers\dx12\dxr\nvidia_helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\dxr\nv_helpers_dx12\RaytracingPipelineGenerator.h">
+      <Filter>Headers\dx12\dxr\nvidia_helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\dxr\nv_helpers_dx12\ShaderBindingTableGenerator.h">
+      <Filter>Headers\dx12\dxr\nvidia_helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\dxr\nv_helpers_dx12\RootSignatureGenerator.h">
+      <Filter>Headers\dx12\dxr\nvidia_helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\dxr\nv_helpers_dx12\TopLevelASGenerator.h">
+      <Filter>Headers\dx12\dxr\nvidia_helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\d3dx12.h">
+      <Filter>Headers\dx12</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\Dx12Api.h">
+      <Filter>Headers\dx12</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\dxr\DXRHelper.h">
+      <Filter>Headers\dx12</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dx12\DXSampleHelper.h">
+      <Filter>Headers\dx12</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="resources\shaders\shaders.hlsl">
+      <Filter>Shaders</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="resources\libs\dxcompiler.dll">
+      <Filter>Libs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="resources\libs\dxil.dll">
+      <Filter>Libs</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="resources\shaders\raytracing\Common.hlsl">
+      <Filter>Shaders\Raytracing</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="resources\shaders\raytracing\Hit.hlsl">
+      <Filter>Shaders\Raytracing</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="resources\shaders\raytracing\Miss.hlsl">
+      <Filter>Shaders\Raytracing</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="resources\shaders\raytracing\RayGen.hlsl">
+      <Filter>Shaders\Raytracing</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{c7220f8c-86ad-4962-9660-49cbd7ecfad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{e88b33ce-20c6-4fd5-9c74-52aebc0913c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs">
+      <UniqueIdentifier>{410a7ff8-fbde-4167-9bc2-82d0dfa9e664}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{ce4be534-31d4-4a3f-bff2-7ef5789ec20b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Raytracing">
+      <UniqueIdentifier>{b8878aa6-55a7-4fde-8e1b-ec7a56523a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\dx12">
+      <UniqueIdentifier>{6b49697e-adf9-4a28-b65b-649d101a3478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\dx12\dxr">
+      <UniqueIdentifier>{0227d3a7-a05a-4aa2-b26a-ee003da7cea5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\dx12\dxr\nvidia_helpers">
+      <UniqueIdentifier>{8139b486-2170-434a-a2d9-d8e2a1901e5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\dx12">
+      <UniqueIdentifier>{1b212f9f-f653-4d0f-bf1e-e79a09f4669d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\dx12\dxr">
+      <UniqueIdentifier>{2aa1ef95-9fa5-424e-9bf7-cc252bf469c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\dx12\dxr\nvidia_helpers">
+      <UniqueIdentifier>{7778a486-dc83-4067-a3d0-a372c9975d63}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
