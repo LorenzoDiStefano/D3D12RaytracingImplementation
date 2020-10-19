@@ -21,8 +21,8 @@
 #include <vector>
 #include "vertex.h"
 #include <combaseapi.h>
-#include "dx12/dxr/nv_helpers_dx12/ShaderBindingTableGenerator.h"
 #include "dx12/dxr/DXRHelper.h"
+#include "dx12/dxr/nv_helpers_dx12/ShaderBindingTableGenerator.h"
 #include "dx12/dxr/nv_helpers_dx12/TopLevelASGenerator.h"
 #include "dx12/dxr/nv_helpers_dx12/BottomLevelASGenerator.h"
 
@@ -56,7 +56,6 @@ namespace RaytracingImplementation
 
 		/// Create all acceleration structures, bottom and top
 		void CreateAccelerationStructures(Microsoft::WRL::ComPtr<ID3D12Resource>&);
-
 		void CreateRaytracingPipeline();
 		void CreateShaderResourceHeap();
 		void CreateShaderBindingTable(Microsoft::WRL::ComPtr<ID3D12Resource>&);
@@ -65,7 +64,6 @@ namespace RaytracingImplementation
 
 		// Adapter info.
 		bool useWarpDevice;
-
 		//Raster change var
 		bool m_raster = true;
 
@@ -74,6 +72,35 @@ namespace RaytracingImplementation
 		void GetHardwareAdapter(_In_ IDXGIFactory2* pFactory, _Outptr_result_maybenull_ IDXGIAdapter1** ppAdapter);
 		void EnableDebugLayer();
 		void WaitForPreviousFrame();
+
+		// #DXR
+		Microsoft::WRL::ComPtr<ID3D12RootSignature> CreateRayGenSignature();
+		Microsoft::WRL::ComPtr<ID3D12RootSignature> CreateMissSignature();
+		Microsoft::WRL::ComPtr<ID3D12RootSignature> CreateHitSignature();
+
+		bool CheckRaytracingSupport();
+		void CreateCommandQueue(D3D12_COMMAND_QUEUE_DESC&);
+		void CreateSwapChain(DXGI_SWAP_CHAIN_DESC1&);
+		void CreateRtvResources(D3D12_DESCRIPTOR_HEAP_DESC&);
+		void WaitUploadVertexBuffer();
+		void CreateRaytracingOutputBuffer();
+
+		NvHelpers::TopLevelASGenerator m_topLevelASGenerator;
+		std::vector<std::pair<Microsoft::WRL::ComPtr<ID3D12Resource>, DirectX::XMMATRIX>> m_instances;
+
+		/// Create the acceleration structure of an instance
+		///
+		/// \param     vVertexBuffers : pair of buffer and vertex count
+		/// \return    AccelerationStructureBuffers for TLAS
+		AccelerationStructureBuffers CreateBottomLevelAS(
+			std::vector<std::pair<Microsoft::WRL::ComPtr<ID3D12Resource>, uint32_t>> vVertexBuffers);
+
+		/// Create the main acceleration structure that holds
+		/// all instances of the scene
+		/// \param     instances : pair of BLAS and transform
+		void CreateTopLevelAS(
+			const std::vector<std::pair<Microsoft::WRL::ComPtr<ID3D12Resource>, DirectX::XMMATRIX>>& instances,
+			AccelerationStructureBuffers& m_topLevelASBuffers);
 
 		bool m_raytracing_support = false;
 
@@ -102,12 +129,6 @@ namespace RaytracingImplementation
 		Microsoft::WRL::ComPtr<ID3D12Fence> m_fence;
 		UINT64 m_fenceValue;
 
-		// #DXR
-		Microsoft::WRL::ComPtr<ID3D12RootSignature> CreateRayGenSignature();
-		Microsoft::WRL::ComPtr<ID3D12RootSignature> CreateMissSignature();
-		Microsoft::WRL::ComPtr<ID3D12RootSignature> CreateHitSignature();
-
-
 		Microsoft::WRL::ComPtr<IDxcBlob> m_rayGenLibrary;
 		Microsoft::WRL::ComPtr<IDxcBlob> m_hitLibrary;
 		Microsoft::WRL::ComPtr<IDxcBlob> m_missLibrary;
@@ -118,6 +139,7 @@ namespace RaytracingImplementation
 
 		// Ray tracing pipeline state
 		Microsoft::WRL::ComPtr<ID3D12StateObject> m_rtStateObject;
+
 		// Ray tracing pipeline state properties, retaining the shader identifiers
 		// to use in the Shader Binding Table
 		Microsoft::WRL::ComPtr<ID3D12StateObjectProperties> m_rtStateObjectProps;
@@ -130,40 +152,13 @@ namespace RaytracingImplementation
 		NvHelpers::ShaderBindingTableGenerator m_sbtHelper;
 		Microsoft::WRL::ComPtr<ID3D12Resource> m_sbtStorage;
 
-		bool CheckRaytracingSupport();
-		void CreateCommandQueue(D3D12_COMMAND_QUEUE_DESC&);
-		void CreateSwapChain(DXGI_SWAP_CHAIN_DESC1&);
-		void CreateRtvResources(D3D12_DESCRIPTOR_HEAP_DESC&);
-		void WaitUploadVertexBuffer();
-		void CreateRaytracingOutputBuffer();
-
 		// Root assets path.
 		std::wstring m_assetsPath;
-
-		//
 		Microsoft::WRL::ComPtr<IDXGIFactory4> factory;
 		UINT dxgiFactoryFlags = 0;
 
-		NvHelpers::TopLevelASGenerator m_topLevelASGenerator;
-		std::vector<std::pair<Microsoft::WRL::ComPtr<ID3D12Resource>, DirectX::XMMATRIX>> m_instances;
-
-		/// Create the acceleration structure of an instance
-		///
-		/// \param     vVertexBuffers : pair of buffer and vertex count
-		/// \return    AccelerationStructureBuffers for TLAS
-		AccelerationStructureBuffers CreateBottomLevelAS(
-			std::vector<std::pair<Microsoft::WRL::ComPtr<ID3D12Resource>, uint32_t>> vVertexBuffers);
-
-		/// Create the main acceleration structure that holds
-		/// all instances of the scene
-		/// \param     instances : pair of BLAS and transform
-		void CreateTopLevelAS(
-			const std::vector<std::pair<Microsoft::WRL::ComPtr<ID3D12Resource>, DirectX::XMMATRIX>>& instances,
-			AccelerationStructureBuffers& m_topLevelASBuffers);
-
 		Microsoft::WRL::ComPtr<ID3D12Resource> m_bottomLevelAS; // Storage for the bottom Level AS
 		AccelerationStructureBuffers m_topLevelASBuffers;
-
 	};
 }
 

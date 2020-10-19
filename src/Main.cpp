@@ -9,13 +9,27 @@
 //
 //*********************************************************
 
+
 #include "stdafx.h"
 #include "RaytracingSample.h"
 #include "Win32Application.h"
+#include <dxgidebug.h>
 
 _Use_decl_annotations_
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
 {
-	RaytracingImplementation::RaytracingSample sample(1280, 720, L"D3D12 Raytracing");
-	return RaytracingImplementation::Win32Application::Run(&sample, hInstance, nCmdShow);
+	int returnValue = 0;
+
+	{
+		RaytracingImplementation::RaytracingSample sample(1280, 720, L"D3D12 Raytracing");
+		returnValue = RaytracingImplementation::Win32Application::Run(&sample, hInstance, nCmdShow);
+	}
+
+	Microsoft::WRL::ComPtr<IDXGIDebug1> dxgiDebug;
+	if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(&dxgiDebug))))
+	{
+		dxgiDebug->ReportLiveObjects(DXGI_DEBUG_ALL, DXGI_DEBUG_RLO_FLAGS(DXGI_DEBUG_RLO_SUMMARY | DXGI_DEBUG_RLO_IGNORE_INTERNAL));
+	}
+
+	return returnValue;
 }

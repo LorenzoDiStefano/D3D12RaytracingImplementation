@@ -42,27 +42,20 @@ namespace RaytracingImplementation
 		virtual void ParseCommandLineArgs(_In_reads_(argc) WCHAR* argv[], int argc);
 
 	private:
-		static const UINT FrameCount = 2;
 
-		Dx12Api gpu;
+		void SetUpPipeline();
+		void LoadAssets();
+		void SetCustomWindowText(LPCWSTR text);
+
 		// Window vars
 		std::wstring m_title;
 		UINT m_windowWidth;
 		UINT m_windowHeight;
 		float m_windowAspectRatio;
 
-		void SetUpPipeline();
-		void LoadAssets();
-
-		void SetCustomWindowText(LPCWSTR text);
-
 		// App resources.
-		// Note that while ComPtr is used to manage the lifetime of resources on the CPU,
-		// it has no understanding of the lifetime of resources on the GPU. Apps must account
-		// for the GPU lifetime of resources to avoid destroying objects that may still be
-		// referenced by the GPU.
-		// An example of this can be found in the class method: OnDestroy().
-		// triangle "mesh" data
+		static const UINT FrameCount = 2;
+		Dx12Api gpu;
 		Microsoft::WRL::ComPtr<ID3D12Resource> m_vertexBuffer;
 		D3D12_VERTEX_BUFFER_VIEW m_vertexBufferView;
 
