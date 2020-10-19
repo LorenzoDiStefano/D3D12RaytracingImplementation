@@ -36,6 +36,8 @@ namespace RaytracingImplementation
 
 		if (gpu.GetRaytracingSupport())
 		{
+			gpu.raster = false;
+
 			// Setup the acceleration structures (AS) for raytracing. When setting up
 			// geometry, each bottom-level AS has its own transform matrix.
 			gpu.CreateAccelerationStructures(m_vertexBuffer);
@@ -144,7 +146,7 @@ namespace RaytracingImplementation
 		// Alternate between rasterization and raytracing using the spacebar
 		if (key == VK_SPACE)
 		{
-			gpu.m_raster = !gpu.m_raster;
+			gpu.raster = !gpu.raster;
 		}
 	}
 

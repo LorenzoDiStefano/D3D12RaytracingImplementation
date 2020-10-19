@@ -65,7 +65,7 @@ namespace RaytracingImplementation
 		// Adapter info.
 		bool useWarpDevice;
 		//Raster change var
-		bool m_raster = true;
+		bool raster = true;
 
 	private:
 		std::wstring GetAssetFullPath(LPCWSTR assetName);

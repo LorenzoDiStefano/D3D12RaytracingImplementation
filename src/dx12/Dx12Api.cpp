@@ -583,7 +583,7 @@ namespace RaytracingImplementation
 
 		// Record commands.
 		// #DXR
-		if (m_raster)
+		if (raster)
 		{
 			const float clearColor[] = { 0.0f, 0.2f, 0.4f, 1.0f };
 			m_commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
